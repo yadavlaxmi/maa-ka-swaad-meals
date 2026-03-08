@@ -236,7 +236,7 @@ const OrderPage = () => {
               <button type="submit" disabled={loading}
                 className="w-full bg-primary text-primary-foreground py-4 rounded-xl font-body font-bold text-lg hover:opacity-90 transition-opacity flex items-center justify-center gap-2 disabled:opacity-50">
                 <UtensilsCrossed className="w-5 h-5" />
-                {loading ? "Placing Order..." : "Place Order — ₹80"}
+                {loading ? "Placing Order..." : `Place Order — ₹${totalPrice}`}
               </button>
             </form>
           )}
