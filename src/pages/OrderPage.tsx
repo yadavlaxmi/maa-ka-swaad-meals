@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { Plus, Minus } from "lucide-react";
 import { UtensilsCrossed, ArrowLeft, CheckCircle, Clock } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
@@ -34,11 +35,17 @@ const OrderPage = () => {
   const [submitted, setSubmitted] = useState(false);
   const [mealType, setMealType] = useState<"lunch" | "dinner">("lunch");
   const [selectedItems, setSelectedItems] = useState<string[]>([]);
+  const [extraRoti, setExtraRoti] = useState(0); // pairs of 2 extra roti
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
   const [instructions, setInstructions] = useState("");
   const [loading, setLoading] = useState(false);
+
+  const basePrice = 80;
+  const extraRotiPrice = extraRoti * 10; // ₹10 per 2 extra roti
+  const totalPrice = basePrice + extraRotiPrice;
+  const totalExtraRoti = extraRoti * 2;
 
   const toggleItem = (item: string) => {
     setSelectedItems((prev) =>
@@ -68,6 +75,7 @@ const OrderPage = () => {
       address: address.trim(),
       meal_type: mealType,
       items: selectedItems,
+      extra_roti: totalExtraRoti,
       special_instructions: instructions.trim() || null,
     });
 
@@ -132,7 +140,7 @@ const OrderPage = () => {
               <h3 className="font-display text-2xl font-bold text-foreground mb-2">Order Placed! 🎉</h3>
               <p className="text-muted-foreground font-body">Your {mealType} will be delivered on time.</p>
               <div className="flex flex-col gap-3 mt-6">
-                <button onClick={() => { setSubmitted(false); setSelectedItems([]); }} className="text-primary font-body font-semibold hover:underline">
+                <button onClick={() => { setSubmitted(false); setSelectedItems([]); setExtraRoti(0); }} className="text-primary font-body font-semibold hover:underline">
                   Order Again
                 </button>
                 <Link to="/" className="text-muted-foreground font-body hover:underline">Back to Home</Link>
@@ -167,7 +175,31 @@ const OrderPage = () => {
                       <div className="text-xs text-muted-foreground">{item.category}</div>
                     </button>
                   ))}
+              </div>
+
+              {/* Extra Roti Section */}
+              <div className="bg-card border border-border rounded-2xl p-5">
+                <h3 className="font-display text-lg font-bold text-foreground mb-1">Extra Roti 🫓</h3>
+                <p className="text-muted-foreground font-body text-sm mb-4">4 roti included • ₹10 me 2 extra roti</p>
+                <div className="flex items-center gap-4">
+                  <button type="button" onClick={() => setExtraRoti(Math.max(0, extraRoti - 1))}
+                    disabled={extraRoti === 0}
+                    className="w-10 h-10 rounded-full border-2 border-border flex items-center justify-center hover:border-primary/50 transition-colors disabled:opacity-30">
+                    <Minus className="w-4 h-4 text-foreground" />
+                  </button>
+                  <div className="text-center min-w-[80px]">
+                    <span className="font-display text-2xl font-bold text-foreground">{totalExtraRoti}</span>
+                    <p className="text-xs text-muted-foreground font-body">extra roti</p>
+                  </div>
+                  <button type="button" onClick={() => setExtraRoti(extraRoti + 1)}
+                    className="w-10 h-10 rounded-full border-2 border-primary bg-primary/10 flex items-center justify-center hover:bg-primary/20 transition-colors">
+                    <Plus className="w-4 h-4 text-primary" />
+                  </button>
+                  {extraRoti > 0 && (
+                    <span className="ml-auto text-primary font-body font-bold">+ ₹{extraRotiPrice}</span>
+                  )}
                 </div>
+              </div>
                 {selectedItems.length > 0 && (
                   <p className="mt-3 text-sm text-primary font-body font-semibold">
                     {selectedItems.length} item{selectedItems.length > 1 ? "s" : ""} selected
@@ -205,7 +237,7 @@ const OrderPage = () => {
               <button type="submit" disabled={loading}
                 className="w-full bg-primary text-primary-foreground py-4 rounded-xl font-body font-bold text-lg hover:opacity-90 transition-opacity flex items-center justify-center gap-2 disabled:opacity-50">
                 <UtensilsCrossed className="w-5 h-5" />
-                {loading ? "Placing Order..." : "Place Order — ₹80"}
+                {loading ? "Placing Order..." : `Place Order — ₹${totalPrice}`}
               </button>
             </form>
           )}

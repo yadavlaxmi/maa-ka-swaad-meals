@@ -42,6 +42,7 @@ export type Database = {
         Row: {
           address: string
           created_at: string
+          extra_roti: number
           id: string
           items: string[]
           meal_type: string
@@ -55,6 +56,7 @@ export type Database = {
         Insert: {
           address: string
           created_at?: string
+          extra_roti?: number
           id?: string
           items: string[]
           meal_type: string
@@ -68,6 +70,7 @@ export type Database = {
         Update: {
           address?: string
           created_at?: string
+          extra_roti?: number
           id?: string
           items?: string[]
           meal_type?: string

@@ -1,0 +1,1 @@
+ALTER TABLE public.orders ADD COLUMN extra_roti INTEGER NOT NULL DEFAULT 0;
