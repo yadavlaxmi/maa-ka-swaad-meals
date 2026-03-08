@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 import { useNavigate } from "react-router-dom";
+import { useToast } from "@/hooks/use-toast";
 import Navbar from "@/components/Navbar";
 import { ShoppingBag, Users, MessageSquare, CalendarCheck, TrendingUp } from "lucide-react";
 
@@ -16,6 +17,7 @@ interface Stats {
 const AdminDashboard = () => {
   const { user, loading: authLoading } = useAuth();
   const navigate = useNavigate();
+  const { toast } = useToast();
   const [stats, setStats] = useState<Stats>({ totalOrders: 0, totalSubscriptions: 0, totalFeedback: 0, activeSubscriptions: 0, todayOrders: 0 });
   const [orders, setOrders] = useState<any[]>([]);
   const [subscriptions, setSubscriptions] = useState<any[]>([]);
@@ -69,12 +71,22 @@ const AdminDashboard = () => {
 
     if (error) {
       console.error("Failed to update order:", error);
+      toast({
+        title: "Error",
+        description: "Order status update failed",
+        variant: "destructive",
+      });
       return;
     }
 
     setOrders((prev) =>
       prev.map((o) => (o.id === orderId ? { ...o, status: newStatus } : o))
     );
+
+    toast({
+      title: "✅ Status Updated",
+      description: `Order marked as ${newStatus}`,
+    });
   };
 
   if (loading) {
