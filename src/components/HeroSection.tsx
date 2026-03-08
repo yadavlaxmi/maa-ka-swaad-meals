@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import heroImg from "@/assets/hero-thali.jpg";
 
 const HeroSection = () => {
