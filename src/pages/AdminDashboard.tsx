@@ -167,9 +167,21 @@ const AdminDashboard = () => {
                         <td className="p-3 font-body text-foreground">{o.extra_roti * 2}</td>
                         <td className="p-3 font-body text-foreground">{o.order_date}</td>
                         <td className="p-3">
-                          <span className={`px-2 py-1 rounded-full text-xs font-body font-semibold ${
-                            o.status === "pending" ? "bg-accent/20 text-accent" : "bg-primary/20 text-primary"
-                          }`}>{o.status}</span>
+                          <select
+                            value={o.status}
+                            onChange={(e) => updateOrderStatus(o.id, e.target.value)}
+                            className={`px-2 py-1 rounded-lg text-xs font-body font-semibold border-0 cursor-pointer ${
+                              o.status === "pending"
+                                ? "bg-accent/20 text-accent"
+                                : o.status === "preparing"
+                                ? "bg-yellow-500/20 text-yellow-600"
+                                : "bg-primary/20 text-primary"
+                            }`}
+                          >
+                            <option value="pending">Pending</option>
+                            <option value="preparing">Preparing</option>
+                            <option value="delivered">Delivered</option>
+                          </select>
                         </td>
                       </tr>
                     ))
