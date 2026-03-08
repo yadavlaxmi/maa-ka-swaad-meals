@@ -71,12 +71,22 @@ const AdminDashboard = () => {
 
     if (error) {
       console.error("Failed to update order:", error);
+      toast({
+        title: "Error",
+        description: "Order status update failed",
+        variant: "destructive",
+      });
       return;
     }
 
     setOrders((prev) =>
       prev.map((o) => (o.id === orderId ? { ...o, status: newStatus } : o))
     );
+
+    toast({
+      title: "✅ Status Updated",
+      description: `Order marked as ${newStatus}`,
+    });
   };
 
   if (loading) {
