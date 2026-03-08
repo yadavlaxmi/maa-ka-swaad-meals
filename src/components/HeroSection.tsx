@@ -34,12 +34,12 @@ const HeroSection = () => {
             Fresh, hygienic, and home-cooked meals delivered daily. Perfect for students, working professionals, and anyone who misses Maa ke haath ka khana.
           </p>
           <div className="flex flex-wrap gap-4">
-            <a
-              href="#plans"
+            <Link
+              to="/book"
               className="bg-primary text-primary-foreground px-8 py-4 rounded-xl font-body font-bold text-lg hover:opacity-90 transition-opacity shadow-lg"
             >
-              Subscribe Now
-            </a>
+              Book Your Thali
+            </Link>
             <a
               href="#menu"
               className="border-2 border-spice-gold text-spice-gold px-8 py-4 rounded-xl font-body font-bold text-lg hover:bg-spice-gold hover:text-deep-brown transition-all"
