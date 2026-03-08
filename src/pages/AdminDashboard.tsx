@@ -187,6 +187,8 @@ const AdminDashboard = () => {
                                 ? "bg-accent/20 text-accent"
                                 : o.status === "preparing"
                                 ? "bg-yellow-500/20 text-yellow-600"
+                                : o.status === "delivered"
+                                ? "bg-green-500/20 text-green-600"
                                 : "bg-primary/20 text-primary"
                             }`}
                           >
