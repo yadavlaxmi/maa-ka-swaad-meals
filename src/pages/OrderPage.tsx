@@ -35,11 +35,17 @@ const OrderPage = () => {
   const [submitted, setSubmitted] = useState(false);
   const [mealType, setMealType] = useState<"lunch" | "dinner">("lunch");
   const [selectedItems, setSelectedItems] = useState<string[]>([]);
+  const [extraRoti, setExtraRoti] = useState(0); // pairs of 2 extra roti
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
   const [instructions, setInstructions] = useState("");
   const [loading, setLoading] = useState(false);
+
+  const basePrice = 80;
+  const extraRotiPrice = extraRoti * 10; // ₹10 per 2 extra roti
+  const totalPrice = basePrice + extraRotiPrice;
+  const totalExtraRoti = extraRoti * 2;
 
   const toggleItem = (item: string) => {
     setSelectedItems((prev) =>
