@@ -9,6 +9,7 @@ import SubscribePage from "./pages/SubscribePage";
 import Auth from "./pages/Auth";
 import Feedback from "./pages/Feedback";
 import AdminDashboard from "./pages/AdminDashboard";
+import MenuPage from "./pages/MenuPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
