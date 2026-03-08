@@ -19,7 +19,7 @@ const Navbar = () => {
           <span className="font-display text-xl font-bold text-foreground">Maa Ka Swad</span>
         </Link>
         <div className="hidden md:flex items-center gap-8">
-          <a href="#menu" className="font-body text-muted-foreground hover:text-primary transition-colors">Menu</a>
+          <Link to="/menu" className="font-body text-muted-foreground hover:text-primary transition-colors">Menu</Link>
           <a href="#plans" className="font-body text-muted-foreground hover:text-primary transition-colors">Plans</a>
           <Link to="/order" className="font-body text-muted-foreground hover:text-primary transition-colors">Order Today</Link>
           <Link to="/feedback" className="font-body text-muted-foreground hover:text-primary transition-colors">Feedback</Link>
