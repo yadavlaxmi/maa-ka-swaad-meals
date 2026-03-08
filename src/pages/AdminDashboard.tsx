@@ -17,6 +17,7 @@ interface Stats {
 const AdminDashboard = () => {
   const { user, loading: authLoading } = useAuth();
   const navigate = useNavigate();
+  const { toast } = useToast();
   const [stats, setStats] = useState<Stats>({ totalOrders: 0, totalSubscriptions: 0, totalFeedback: 0, activeSubscriptions: 0, todayOrders: 0 });
   const [orders, setOrders] = useState<any[]>([]);
   const [subscriptions, setSubscriptions] = useState<any[]>([]);
