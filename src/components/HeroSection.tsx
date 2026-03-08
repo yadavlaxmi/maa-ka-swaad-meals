@@ -46,7 +46,13 @@ const HeroSection = () => {
               to={user ? "/subscribe" : "/auth"}
               className="border-2 border-accent text-accent px-8 py-4 rounded-xl font-body font-bold text-lg hover:bg-accent hover:text-accent-foreground transition-all"
             >
-              📅 Monthly Plan
+              📅 Subscribe
+            </Link>
+            <Link
+              to={user ? "/admin" : "/auth"}
+              className="border-2 border-background/50 text-background px-8 py-4 rounded-xl font-body font-bold text-lg hover:bg-background/10 transition-all"
+            >
+              🔒 Admin
             </Link>
           </div>
         </motion.div>
