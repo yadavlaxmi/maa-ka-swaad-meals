@@ -61,6 +61,22 @@ const AdminDashboard = () => {
     setLoading(false);
   };
 
+  const updateOrderStatus = async (orderId: string, newStatus: string) => {
+    const { error } = await supabase
+      .from("orders")
+      .update({ status: newStatus })
+      .eq("id", orderId);
+
+    if (error) {
+      console.error("Failed to update order:", error);
+      return;
+    }
+
+    setOrders((prev) =>
+      prev.map((o) => (o.id === orderId ? { ...o, status: newStatus } : o))
+    );
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen bg-background">
