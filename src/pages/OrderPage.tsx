@@ -75,6 +75,7 @@ const OrderPage = () => {
       address: address.trim(),
       meal_type: mealType,
       items: selectedItems,
+      extra_roti: totalExtraRoti,
       special_instructions: instructions.trim() || null,
     });
 
