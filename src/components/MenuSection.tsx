@@ -1,8 +1,5 @@
 import { motion } from "framer-motion";
-import { UtensilsCrossed, Lock } from "lucide-react";
-import { Link } from "react-router-dom";
-import { useAuth } from "@/hooks/useAuth";
-import { useSubscription } from "@/hooks/useSubscription";
+import { UtensilsCrossed } from "lucide-react";
 
 const days = [
   { day: "Monday", lunch: { items: ["Dal Tadka", "Aloo Gobi", "Rice", "Roti (4)", "Salad", "Pickle"] }, dinner: { items: ["Rajma", "Mix Veg", "Rice", "Roti (4)", "Raita"] } },
@@ -15,46 +12,6 @@ const days = [
 ];
 
 const MenuSection = () => {
-  const { user } = useAuth();
-  const { hasActiveSubscription, loading } = useSubscription();
-
-  if (loading) return null;
-
-  // Not logged in or no subscription → show locked state
-  if (!user || !hasActiveSubscription) {
-    return (
-      <section id="menu" className="section-padding bg-background">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center"
-          >
-            <p className="text-primary font-body font-semibold uppercase tracking-widest mb-2">Our Menu</p>
-            <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-4">
-              Weekly <span className="text-primary">Thali</span> Menu
-            </h2>
-            
-            <div className="max-w-md mx-auto mt-12 bg-card border border-border rounded-2xl p-10">
-              <Lock className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
-              <h3 className="font-display text-xl font-bold text-foreground mb-2">Menu is for Subscribers Only</h3>
-              <p className="text-muted-foreground font-body mb-6">
-                Book a tiffin subscription to see our full weekly menu with all dishes.
-              </p>
-              <Link
-                to={user ? "/book" : "/auth"}
-                className="inline-block bg-primary text-primary-foreground px-8 py-3 rounded-xl font-body font-bold hover:opacity-90 transition-opacity"
-              >
-                {user ? "Subscribe Now" : "Login & Subscribe"}
-              </Link>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-    );
-  }
-
   return (
     <section id="menu" className="section-padding bg-background">
       <div className="max-w-7xl mx-auto">

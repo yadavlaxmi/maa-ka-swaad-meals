@@ -33,21 +33,21 @@ const HeroSection = () => {
             <span className="text-accent">Tiffin Center</span>
           </h1>
           <p className="font-body text-background/80 text-lg md:text-xl mb-10 max-w-lg">
-            Fresh, hygienic, and home-cooked meals delivered daily. Perfect for students, working professionals, and anyone who misses Maa ke haath ka khana.
+            Fresh, hygienic, and home-cooked meals delivered daily. Order one meal or subscribe monthly!
           </p>
           <div className="flex flex-wrap gap-4">
             <Link
-              to={user ? "/book" : "/auth"}
+              to={user ? "/order" : "/auth"}
               className="bg-primary text-primary-foreground px-8 py-4 rounded-xl font-body font-bold text-lg hover:opacity-90 transition-opacity shadow-lg"
             >
-              {user ? "Book Your Thali" : "Login to Book"}
+              🍽️ Order Today
             </Link>
-            <a
-              href="#plans"
+            <Link
+              to={user ? "/subscribe" : "/auth"}
               className="border-2 border-accent text-accent px-8 py-4 rounded-xl font-body font-bold text-lg hover:bg-accent hover:text-accent-foreground transition-all"
             >
-              View Plans
-            </a>
+              📅 Monthly Plan
+            </Link>
           </div>
         </motion.div>
       </div>

@@ -38,6 +38,48 @@ export type Database = {
         }
         Relationships: []
       }
+      orders: {
+        Row: {
+          address: string
+          created_at: string
+          id: string
+          items: string[]
+          meal_type: string
+          name: string
+          order_date: string
+          phone: string
+          special_instructions: string | null
+          status: string
+          user_id: string
+        }
+        Insert: {
+          address: string
+          created_at?: string
+          id?: string
+          items: string[]
+          meal_type: string
+          name: string
+          order_date?: string
+          phone: string
+          special_instructions?: string | null
+          status?: string
+          user_id: string
+        }
+        Update: {
+          address?: string
+          created_at?: string
+          id?: string
+          items?: string[]
+          meal_type?: string
+          name?: string
+          order_date?: string
+          phone?: string
+          special_instructions?: string | null
+          status?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       subscriptions: {
         Row: {
           address: string
