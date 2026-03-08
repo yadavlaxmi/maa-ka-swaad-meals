@@ -139,7 +139,7 @@ const OrderPage = () => {
               <h3 className="font-display text-2xl font-bold text-foreground mb-2">Order Placed! 🎉</h3>
               <p className="text-muted-foreground font-body">Your {mealType} will be delivered on time.</p>
               <div className="flex flex-col gap-3 mt-6">
-                <button onClick={() => { setSubmitted(false); setSelectedItems([]); }} className="text-primary font-body font-semibold hover:underline">
+                <button onClick={() => { setSubmitted(false); setSelectedItems([]); setExtraRoti(0); }} className="text-primary font-body font-semibold hover:underline">
                   Order Again
                 </button>
                 <Link to="/" className="text-muted-foreground font-body hover:underline">Back to Home</Link>
