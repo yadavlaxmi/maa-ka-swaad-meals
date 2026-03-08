@@ -14,7 +14,7 @@ interface Stats {
 }
 
 const AdminDashboard = () => {
-  const { user } = useAuth();
+  const { user, loading: authLoading } = useAuth();
   const navigate = useNavigate();
   const [stats, setStats] = useState<Stats>({ totalOrders: 0, totalSubscriptions: 0, totalFeedback: 0, activeSubscriptions: 0, todayOrders: 0 });
   const [orders, setOrders] = useState<any[]>([]);
@@ -23,16 +23,14 @@ const AdminDashboard = () => {
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState<"orders" | "subscriptions" | "feedback">("orders");
 
-  // Simple admin check — you should replace this with a proper roles table
-  const ADMIN_EMAILS = ["admin@maakaswad.com"];
-
   useEffect(() => {
+    if (authLoading) return;
     if (!user) {
       navigate("/auth");
       return;
     }
     fetchData();
-  }, [user]);
+  }, [user, authLoading]);
 
   const fetchData = async () => {
     setLoading(true);
