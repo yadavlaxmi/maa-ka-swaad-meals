@@ -174,7 +174,31 @@ const OrderPage = () => {
                       <div className="text-xs text-muted-foreground">{item.category}</div>
                     </button>
                   ))}
+              </div>
+
+              {/* Extra Roti Section */}
+              <div className="bg-card border border-border rounded-2xl p-5">
+                <h3 className="font-display text-lg font-bold text-foreground mb-1">Extra Roti 🫓</h3>
+                <p className="text-muted-foreground font-body text-sm mb-4">4 roti included • ₹10 me 2 extra roti</p>
+                <div className="flex items-center gap-4">
+                  <button type="button" onClick={() => setExtraRoti(Math.max(0, extraRoti - 1))}
+                    disabled={extraRoti === 0}
+                    className="w-10 h-10 rounded-full border-2 border-border flex items-center justify-center hover:border-primary/50 transition-colors disabled:opacity-30">
+                    <Minus className="w-4 h-4 text-foreground" />
+                  </button>
+                  <div className="text-center min-w-[80px]">
+                    <span className="font-display text-2xl font-bold text-foreground">{totalExtraRoti}</span>
+                    <p className="text-xs text-muted-foreground font-body">extra roti</p>
+                  </div>
+                  <button type="button" onClick={() => setExtraRoti(extraRoti + 1)}
+                    className="w-10 h-10 rounded-full border-2 border-primary bg-primary/10 flex items-center justify-center hover:bg-primary/20 transition-colors">
+                    <Plus className="w-4 h-4 text-primary" />
+                  </button>
+                  {extraRoti > 0 && (
+                    <span className="ml-auto text-primary font-body font-bold">+ ₹{extraRotiPrice}</span>
+                  )}
                 </div>
+              </div>
                 {selectedItems.length > 0 && (
                   <p className="mt-3 text-sm text-primary font-body font-semibold">
                     {selectedItems.length} item{selectedItems.length > 1 ? "s" : ""} selected
