@@ -95,7 +95,7 @@ const SubscribePage = () => {
               <CheckCircle className="w-16 h-16 text-secondary mx-auto mb-4" />
               <h3 className="font-display text-2xl font-bold text-foreground mb-2">Subscribed! 🎉</h3>
               <p className="text-muted-foreground font-body">Your tiffin subscription is now active.</p>
-              <Link to="/#menu" className="mt-6 inline-block text-primary font-body font-semibold hover:underline">
+              <Link to="/menu" className="mt-6 inline-block text-primary font-body font-semibold hover:underline">
                 View Weekly Menu →
               </Link>
             </motion.div>
