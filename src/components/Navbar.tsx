@@ -21,30 +21,22 @@ const Navbar = () => {
         <div className="hidden md:flex items-center gap-8">
           <a href="#menu" className="font-body text-muted-foreground hover:text-primary transition-colors">Menu</a>
           <a href="#plans" className="font-body text-muted-foreground hover:text-primary transition-colors">Plans</a>
+          <Link to="/order" className="font-body text-muted-foreground hover:text-primary transition-colors">Order Today</Link>
           <Link to="/feedback" className="font-body text-muted-foreground hover:text-primary transition-colors">Feedback</Link>
           <a href="#contact" className="font-body text-muted-foreground hover:text-primary transition-colors">Contact</a>
         </div>
         <div className="flex items-center gap-3">
           {user ? (
             <>
-              <Link
-                to="/book"
-                className="bg-primary text-primary-foreground px-5 py-2 rounded-lg font-body font-semibold hover:opacity-90 transition-opacity"
-              >
-                Book Thali
+              <Link to="/subscribe" className="bg-primary text-primary-foreground px-5 py-2 rounded-lg font-body font-semibold hover:opacity-90 transition-opacity">
+                Subscribe
               </Link>
-              <button
-                onClick={signOut}
-                className="flex items-center gap-1 text-muted-foreground hover:text-primary transition-colors font-body text-sm"
-              >
+              <button onClick={signOut} className="flex items-center gap-1 text-muted-foreground hover:text-primary transition-colors font-body text-sm">
                 <LogOut className="w-4 h-4" /> Logout
               </button>
             </>
           ) : (
-            <Link
-              to="/auth"
-              className="bg-primary text-primary-foreground px-5 py-2 rounded-lg font-body font-semibold hover:opacity-90 transition-opacity flex items-center gap-2"
-            >
+            <Link to="/auth" className="bg-primary text-primary-foreground px-5 py-2 rounded-lg font-body font-semibold hover:opacity-90 transition-opacity flex items-center gap-2">
               <User className="w-4 h-4" /> Login
             </Link>
           )}
